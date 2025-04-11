@@ -1,0 +1,45 @@
+projection implementation in class zbp_ats_vt_travel_processor unique;
+strict ( 2 );
+use draft;
+//use side effects;
+define behavior for ZATS_VT_TRAVEL_PROCESSOR alias Travel
+{
+  use create(augment,precheck);
+  use update(precheck);
+  use delete;
+  use action copyTravel;
+  use association _Booking { create; with draft;}
+  use association _Attachment { create; with draft;}
+  use action Prepare;
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Resume;
+ }
+
+define behavior for ZATS_VT_BOOKING_PROCESSOR alias Booking
+{
+  use update;
+  use delete;
+
+  use association _Travel {with draft;}
+  use association _Bookingsupplement { create;with draft; }
+}
+
+
+define behavior for ZATS_VT_BOOKSUPPL_PROCESSOR alias BookingSuppl
+{
+  use update;
+  use delete;
+
+  use association _Travel{with draft ;}
+  use association _Booking{with draft;}
+}
+
+define behavior for ZATS_vt_ATTACH_PROCESSOR alias Attachment
+{
+  use update;
+  use delete;
+
+  use association _Travel { with draft; }
+}

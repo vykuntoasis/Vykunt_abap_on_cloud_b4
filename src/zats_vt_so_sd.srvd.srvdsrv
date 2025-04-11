@@ -1,0 +1,4 @@
+@EndUserText.label: 'service definito'
+define service ZATS_VT_SO_SD {
+  expose ZC_ATS_VT_SALES_ANA;
+}

@@ -1,0 +1,4 @@
+@EndUserText.label: 'service definito'
+define service ZATS_VT_SRAND_SD {
+  expose zc_ats_vt_sales_rank as Rankset;
+}
